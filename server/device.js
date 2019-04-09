@@ -4,9 +4,10 @@ const bodyParser = require('body-parser');
 const mongoose   = require('mongoose');
 const morgan     = require('morgan');
 
-const config     = require('./config').server;
+const router     = require('./routes/device.route');
 
-const router     = require('./routes/server.route');
+const devNo      = Number(process.argv[2]);
+const config     = require('./config').devices[devNo];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -19,5 +20,5 @@ mongoose.connect(config.db.host)
 app.use('/api', router);
 
 app.listen(config.port, function() {
-  console.log('Main server listening on ' + config.port);
+  console.log('Device ' + devNo + ' listening on ' + config.port);
 });
