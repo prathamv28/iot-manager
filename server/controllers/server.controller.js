@@ -2,8 +2,9 @@ const Device = require('../models/device.model');
 
 exports.Device_register = (req, res) => {
   let body = req.body;
-  if(!body.DeviceId) {
-    res.status(400, {error: "No DeviceId provided"});
+  console.log(body);
+  if(body.DeviceId == null) {
+    res.status(400).json({'msg': "No DeviceId provided"});
     return;
   }
 
@@ -11,18 +12,21 @@ exports.Device_register = (req, res) => {
     .then((dev) => {
       if(!dev) {
         let device = new Device(req.body);
-        return device.save();
+        device.save()
+          .then((result) => {
+            console.log(result);
+            res.status(201).json({'msg': "Device Registered"});
+          })
+          .catch((err) => {
+            res.status(400).json({'msg': "Bad Request"});
+          });
       }
       else {
-        res.status(200);
-        return Promise.resolve(null);
+        res.status(200).json({'msg': "Device already registered"});
       }
-    })
-    .then((dev) => {
-      res.status(201);
     })
     .catch((err) => {
       console.log(err);
-      res.status(400);
+      res.status(500).json({'msg': "Internal Server Error"});
     });
 };

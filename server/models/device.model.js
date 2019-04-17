@@ -3,10 +3,11 @@ const Schema = mongoose.Schema;
 
 let DeviceSchema = new Schema({
   DeviceId: {type: Number},
-  Status: {type: Boolean, default: false},
+  Status: {type: String, enum: ['Active', 'Inactive'], default: 'Active'},
   StatusTs: {type: Date, default: Date.now()},
   Location: {type: String},
-  SensorTypes: {type: [Number]}
+  SensorTypes: {type: [Number]},
+  URL: {type: String}
 });
 
 let Device = mongoose.model('Device', DeviceSchema);

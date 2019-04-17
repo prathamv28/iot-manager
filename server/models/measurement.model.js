@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let MeasurementSchema = new Schema({
-  SensorId: {type: Number},
-  SensorType: {type: Number},
+  SensorId: {type: String},
+  SensorType: {type: String},
   Unit: {type: String, default: ""},
   Value: {type: Number},
-  Timestamp: {type: Date, default: Date.now()}
+  createdAt: { type: Date, expires: 3600*24*7, default: Date.now() }
 });
 
 let Measurement = mongoose.model('Measurement', MeasurementSchema);

@@ -3,8 +3,10 @@ const app        = express();
 const bodyParser = require('body-parser');
 const mongoose   = require('mongoose');
 const morgan     = require('morgan');
+const rp         = require('request-promise-native');
 
 const config     = require('./config').server;
+const utils      = require('./utils');
 
 const router     = require('./routes/server.route');
 
@@ -20,4 +22,5 @@ app.use('/api', router);
 
 app.listen(config.port, function() {
   console.log('Main server listening on ' + config.port);
+  utils.Heartbeat();
 });
