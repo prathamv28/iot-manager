@@ -12,7 +12,7 @@ var unitMap = {
 
 function submitSummary(devNo) {
   let devConfig = config.devices[devNo];
-  let t0 = new Date(Date.now() - 3*config.fetchFreq);
+  let t0 = new Date(Date.now() - 4*config.fetchFreq);
   let group_query = {
       _id: "$SensorType",
   };

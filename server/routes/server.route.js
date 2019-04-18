@@ -13,6 +13,8 @@ Router.post('/device', ServerCtrl.Device_register);
 Router.get('/summary', QueryCtrl.Query(Summary));
 Router.post('/summary', QueryCtrl.Post(Summary));
 
-// Router.get('/summary/custom', ServerCtrl.Get_Summary);
+Router.get('/summary/custom', ServerCtrl.Get_Summary);
+
+Router.get('/range', ServerCtrl.Get_Range);
 
 module.exports = Router;

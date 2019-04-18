@@ -25,8 +25,70 @@
           <tbody id="device-tbody"></tbody>
         </table>
       </div>
+
+      <div><h3>Weather Report</h3></div>
+      <form id="my-form" action="#" class="form" method="GET">
+        <fieldset>
+            <label for="time">Time:</label>
+            <input type="text" id="time" name="name" placeholder="Duration for statistics" />
+
+            <label for="location-table">Location:</label>
+             <select id="location-table" class='dropdown-content'>
+            </select>
+
+            <button type="submit"  id="loc_data_button">
+              Submit
+            </button>
+
+        </fieldset>
+    </form>
+
+    <table class="table" id="location-stats-table">
+      <tbody id="location-stats-table-body"></tbody>
+    </table>
+
+        <div><h3> Range Query </h3></div>
+        <form id="range-form" action="#" class="form" method="GET">
+        <fieldset>
+
+            <label for="lower_limit">Lower Limit:</label>
+            <input type="text" id="lower_limit" name="name" placeholder="Lower Limit on Property" />
+
+            <label for="upper_limit">Upper Limit:</label>
+            <input type="text" id="upper_limit" name="name" placeholder="Upper Limit on Property" />
+
+            <label for="res_limit">Result Limit:</label>
+            <input type="text" id="res_limit" name="name" placeholder="Number of entities requested" />
+
+            <label for="range-table">Location:</label>
+             <select id="range-table" class='dropdown-content'>
+            </select>
+
+            <label for="range-param">Property:</label>
+             <select id="range-param" class='dropdown-content'>
+                <option value="Pressure">Pressure</option>
+                <option value="Humidity">Humidity</option>
+                <option value="Temperature">Temperature</option>
+                <option value="Wind Speed">Wind Speed</option>
+            </select>
+
+            <button type="submit"  id="range_data_button">
+              Submit
+            </button>
+
+        </fieldset>
+    </form>
+
+
+
+    <table class="table" id="range-stats-table">
+      <tbody id="range-stats-table-body"></tbody>
+    </table>
+
     </div>
 
+  
+</body>
 
     <script src="/dist/index.js"></script>
   </body>
