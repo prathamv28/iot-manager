@@ -90,21 +90,22 @@ exports.SendSummary = SendSummary;
 
 function heartbeat() {
   let promises = [];
-  let devNo = 0;
+  let status;
   for(let dev of config.devices) {
     let p = rp({
       method: 'GET',
       uri: dev.host + ":" + dev.port.toString() + "/api/heartbeat"
     })
         .then((result) => {
-          return (Device.findOne({DeviceId: devNo}), 'Active');
+          status = 'Active';
+          return Device.findOne({DeviceId: dev.deviceId});
         })
         .catch((err) => {
-          console.log(err);
-          return (Device.findOne({DeviceId: devNo}), 'Inactive');
+          status = 'Inactive';
+          return Device.findOne({DeviceId: dev.deviceId});
         })
-        .then((device, status) => {
-          if(device.Status != status) {
+        .then((device) => {
+          if(device!=null && device.Status != status) {
             device.Status = status;
             device.StatusTs = Date.now();
             return device.save();
@@ -120,7 +121,6 @@ function heartbeat() {
           Promise.reject(err);
         });
     promises.push(p);
-    devNo++;
   }
   return Promise.all(promises);
 }

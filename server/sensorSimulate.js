@@ -75,7 +75,7 @@ function genMsmt(sids) {
           Value: genMap[typ]()
         },
         json: true
-      }).then((result) => {console.log(result);})
+      }).then((result) => {})
           .catch((err) => console.log(err));
       promises.push(p);
     }
