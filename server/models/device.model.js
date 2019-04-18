@@ -6,7 +6,7 @@ let DeviceSchema = new Schema({
   Status: {type: String, enum: ['Active', 'Inactive'], default: 'Active'},
   StatusTs: {type: Date, default: Date.now()},
   Location: {type: String},
-  SensorTypes: {type: [Number]},
+  SensorTypes: {type: [String]},
   URL: {type: String}
 });
 

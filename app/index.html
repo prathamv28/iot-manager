@@ -10,7 +10,23 @@
       <div class="row jumbotron" style="font-variant: small-caps;">
         <h1>IOT Manager</h1>
       </div>
+      <div><h3>Devices:</h3></div>
+      <div>
+        <table class="table" id="device-table">
+          <thead>
+            <tr>
+              <th scope="col">Device ID</th>
+              <th scope="col">Location</th>
+              <th scope="col">Sensors</th>
+              <th scope="col">Status</th>
+              <th scope="col">Since</th>
+            </tr>
+          </thead>
+          <tbody id="device-tbody"></tbody>
+        </table>
+      </div>
     </div>
+
 
     <script src="/dist/index.js"></script>
   </body>
