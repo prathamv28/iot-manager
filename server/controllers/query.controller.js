@@ -29,7 +29,6 @@ exports.QueryById = function (model) {
 
 exports.Post = function (model) {
   return (req, res) => {
-    console.log(req.body);
     let instance = new model(req.body);
     instance.save()
       .then((result) => {

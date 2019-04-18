@@ -12,7 +12,7 @@ var unitMap = {
 
 function submitSummary(devNo) {
   let devConfig = config.devices[devNo];
-  let t0 = Date.now() - config.fetchFreq;
+  let t0 = new Date(Date.now() - 3*config.fetchFreq);
   let group_query = {
       _id: "$SensorType",
   };
@@ -43,6 +43,7 @@ function submitSummary(devNo) {
     },
   ])
     .then((results) => {
+      // console.log(results);
       let promises = [];
       for(let result of results) {
         if(result.Count == 0) {
@@ -128,7 +129,7 @@ function heartbeat() {
 function Heartbeat() {
   heartbeat().then(() => {
     setTimeout(() => {
-      console.log("Heartbeat: " + new Date());
+      // console.log("Heartbeat: " + new Date());
       Heartbeat();
     }, config.heartbeat);
   })
