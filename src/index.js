@@ -123,6 +123,7 @@ document.getElementById('range-form').onsubmit = function(){
 
       let row = document.createElement('TR');
       row.insertCell().innerHTML = "<b> Day <b>";
+      row.insertCell().innerHTML = "<b> Time <b>";
       row.insertCell().innerHTML = "<b> Value <b>";
       table_body.appendChild(row);
 
@@ -130,6 +131,7 @@ document.getElementById('range-form').onsubmit = function(){
         console.log(props[i]);
         let row = document.createElement('TR');
         row.insertCell().innerHTML = props[i]['day'];
+        row.insertCell().innerHTML = props[i]['time'];
         row.insertCell().innerHTML = props[i]['val'];
         table_body.appendChild(row);
       }

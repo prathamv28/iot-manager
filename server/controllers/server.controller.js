@@ -111,7 +111,7 @@ exports.Get_Range = (req, res) => {
 
         //For summary of different data on a given location
         let lower_bound=-1;
-        let upper_bound=1000000;
+        let upper_bound=-1;
         if(req.query.lower_bound ){
           lower_bound= req.query.lower_bound;
         }
@@ -122,16 +122,27 @@ exports.Get_Range = (req, res) => {
         var res_json=[];
         for(i=0; i<result.length; i++){
 
-          if( result[i]['Summary']['Average'] < req.query.lower_bound || result[i]['Summary']['Average'] > req.query.upper_bound ){
-              continue;
+          if(upper_bound==-1){
+            if( result[i]['Summary']['Average'] < req.query.lower_bound ){
+                continue;
+            }
+          }
+          else{
+            if( result[i]['Summary']['Average'] < req.query.lower_bound || result[i]['Summary']['Average'] > req.query.upper_bound ){
+                continue;
+            }            
           }
 
           var ts= new Date(result[i]['Timestamp']);
           var date= ts.getDate();
           var month= ts.getMonth();
           var year= ts.getFullYear();
+          var sec= ts.getSeconds();
+          var min= ts.getMinutes();
+          var hour= ts.getHours();
           var date_str = date + '/' + (parseInt(month)+1).toString() +'/' + year;
-          res_json.push( {  'day':date_str, 'val':result[i]['Summary']['Average'] }  );
+          var time_str = hour + ':' + min +':' + sec;
+          res_json.push( {  'day':date_str, 'time':time_str, 'val':result[i]['Summary']['Average'] }  );
         }
  
            res.json({'res':res_json});
