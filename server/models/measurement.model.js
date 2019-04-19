@@ -6,7 +6,7 @@ let MeasurementSchema = new Schema({
   SensorType: {type: String},
   Unit: {type: String, default: ""},
   Value: {type: Number},
-  createdAt: { type: Date, default: Date.now() }
+  createdAt: { type: Number } // datetime
 });
 
 let Measurement = mongoose.model('Measurement', MeasurementSchema);

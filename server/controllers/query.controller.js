@@ -1,3 +1,6 @@
+const Measurement = require('../models/measurement.model');
+const Summary = require('../models/summary.model');
+
 exports.Query  = function (model) {
   return (req, res) => {
     model.find(req.query)
@@ -30,6 +33,12 @@ exports.QueryById = function (model) {
 exports.Post = function (model) {
   return (req, res) => {
     let instance = new model(req.body);
+      if(model == Measurement) {
+          instance.createdAt = Date.now();
+      }
+      if(model == Summary) {
+          instance.Timestamp = Date.now();
+      }
     instance.save()
       .then((result) => {
         // console.log(result);

@@ -7,7 +7,7 @@ let SummarySchema = new Schema({
   SensorType: {type: String},
   Unit: {type: String, default: ""},
   Summary: {},
-  Timestamp: {type: Date, default: Date.now()}
+  Timestamp: {type: Number} // datetime
 });
 
 let Summary = mongoose.model('Summary', SummarySchema);

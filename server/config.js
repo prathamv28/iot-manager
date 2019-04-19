@@ -6,7 +6,7 @@ module.exports = {
     host: "http://localhost",
     port: 8080,
     db: {
-      host: "localhost:27016"
+      host: "localhost:27017"
     }
   },
   devices: [
@@ -20,7 +20,6 @@ module.exports = {
         host: "localhost:27018"
       }
     },
-
     {
       host: "http://localhost",
       port: 8082,

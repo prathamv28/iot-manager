@@ -35,9 +35,6 @@ exports.Device_register = (req, res) => {
 
 
 exports.Get_Summary = (req, res) => {
-    console.log(req.query.location )
-    console.log(req.query.time )
-    console.log(req.query.limit )
     // res.json({'debug':1})
     let q = {
         Location: req.query.location
@@ -49,7 +46,7 @@ exports.Get_Summary = (req, res) => {
 
     if(req.query.time) {
         q['Timestamp'] = {
-            $gte: new Date(Date.now()-Number(req.query.time)*1000)
+            $gte: Date.now()-Number(req.query.time)*1000
         };
     }
     Summary.find(q)
@@ -74,7 +71,6 @@ exports.Get_Summary = (req, res) => {
 
 
               if( result[i]['Summary']['Min'] < min_json[result[i]["SensorType"]] ){
-                console.log('Y')
                 min_json[result[i]["SensorType"]]= result[i]['Summary']['Min'];
               }
 
@@ -86,7 +82,6 @@ exports.Get_Summary = (req, res) => {
               min_json[result[i]["SensorType"]]= result[i]['Summary']['Min'];
             }
         }
-        console.log(result.length);
         for(var key in res_json){
               res_json[key] /= count_json[key];
         }
@@ -101,18 +96,13 @@ exports.Get_Summary = (req, res) => {
 
 
 exports.Get_Range = (req, res) => {
-    console.log(req.query.lower_bound )
-    console.log(req.query.upper_bound )
-    console.log(req.query.param )
-    console.log(req.query.location )
-    // res.json({'debug':1})
     let q = {
         Location: req.query.location,
         SensorType: req.query.param
     };
 
     limit=5;
-    if(req.query.limit){      
+    if(req.query.limit){
       limit=parseInt(req.query.limit);
     }
     Summary.find(q)
@@ -120,8 +110,8 @@ exports.Get_Range = (req, res) => {
         .then((result) => {
 
         //For summary of different data on a given location
-        lower_bound=-1
-        upper_bound=1000000;
+        let lower_bound=-1;
+        let upper_bound=1000000;
         if(req.query.lower_bound ){
           lower_bound= req.query.lower_bound;
         }
