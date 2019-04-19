@@ -23,7 +23,7 @@ module.exports = {
     {
       host: "http://localhost",
       port: 8082,
-      id: "dev2",
+      deviceId: 1,
       location: "Lucknow",
       sensorTypes: ["Temperature","Pressure"],
       db: {
