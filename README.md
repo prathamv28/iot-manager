@@ -36,11 +36,11 @@ node server/device.js 0
 ```
 
 **NOTE**: If you want to add more devices:
-* Add device configuration in the devices list of file `config.js`
-* Start more mongo container (at port say 27019)
-* Start off the device `node server/device.js {Device Index in the list}`
+- Add device configuration in the devices list of file `config.js`
+- Start more mongo container (at port say 27019)
+- Start off the device `node server/device.js {Device Index in the list}`
 
-* Start off the sensor simulation to generate data
+- Start off the sensor simulation to generate data
 ```
 node server/sensorSimulate.js
 ```
